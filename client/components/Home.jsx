@@ -1,6 +1,60 @@
 React.initializeTouchEvents(true)
 
 Home = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    let handle = Meteor.subscribe("myData")
+    return {
+      users: handle.ready() ? MyData.find().fetch() : []
+    }
+  },
+  getInitialState() {
+    cards: this.data.users
+  },
+  removeCard(_id) {
+    this.setState({
+      cards: this.state.cards.filter((card) =>  card._id != _id )
+    })
+  },
+  renderCards() {
+    return this.state.cards.map((card) => {
+      return <Card
+        key={card._id}
+        card={card}
+        remove={ () => this.removeCard(card._id)}
+      />
+    })
+  },
+  render() {
+    return <div>{this.renderCards()}</div>
+  }
+})
+
+
+// Home = React.createClass({
+//   getInitialState() {
+//     return {
+//       cards: [{id:1}, {id:2}, {id:3}, {id:4}, {id:5}, {id:6}]
+//     }
+//   },
+  // removeCard(id) {
+  //   this.setState({cards: this.state.cards.filter((card) =>  card.id != id )})
+  // },
+  // renderCards() {
+  //   return this.state.cards.map((card) => {
+  //     return <Card key= {card.id} card={card} remove={()=>this.removeCard(card.id)}/>
+  //   })
+  // },
+//   render() {
+//     return (
+//       <div>
+//         {this.renderCards()}
+//       </div>
+//     )
+//   }
+// });
+
+Card = React.createClass({
   getInitialState() {
     return {
       x: 0,
