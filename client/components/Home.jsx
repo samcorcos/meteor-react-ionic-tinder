@@ -1,3 +1,5 @@
+React.initializeTouchEvents(true)
+
 Home = React.createClass({
   getInitialState() {
     return {
@@ -31,7 +33,6 @@ Home = React.createClass({
     })
   },
   render() {
-    React.initializeTouchEvents(true)
     let cardStyle = {
       transform: "translate(" +
         this.state.x + "px," +
