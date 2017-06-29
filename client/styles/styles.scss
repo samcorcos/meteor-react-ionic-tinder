@@ -1,2 +1,24 @@
-@import ".meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic";
-@import ".meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons";
+@import '{hashwin:ionic-sass}/_ionic';
+@import '{hashwin:ionicons-sass}/_ionicons';
+
+.card {
+  cursor: pointer;
+  max-height: 60vh;
+}
+
+.database-reset-button {
+  border: solid 1px black;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 1px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-justify-content: center;
+}
+* {
+  // Stop chrome browser from applying swipe navigation on swipe left/right
+  // There's probably a better way to do this, but best approach I've found.
+  touch-action: pan-y;
+}
