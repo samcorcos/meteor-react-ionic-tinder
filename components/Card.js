@@ -35,7 +35,7 @@ export default class Card extends Component {
   }
   moveCardEnd(e) {
     e.preventDefault()
-    width = window.width
+    width = $(window).width();
     var change = e.changedTouches[0].pageX - this.state.initialX;
 
     if (change < -(width / 3)) {
